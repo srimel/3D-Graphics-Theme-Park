@@ -123,6 +123,85 @@ Track::Initialize(void)
 	glVertex3f(0.5f, -0.5f, 1.0f);
 	glVertex3f(-0.5f, -0.5f, 1.0f);
 	glVertex3f(-0.5f, -0.5f, 0.0f);
+
+	const float OFFSET = 1.2;
+    float x = OFFSET;
+    float y = 0;
+
+glNormal3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+
+glNormal3f(0.0f, 0.0f, -1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+
+glNormal3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+
+glNormal3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+
+glNormal3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+
+glNormal3f(0.0f, -1.0f, 0.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+
+    x += OFFSET;
+
+glNormal3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+
+glNormal3f(0.0f, 0.0f, -1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+
+glNormal3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+
+glNormal3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+
+glNormal3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 1.0f);
+	glVertex3f(0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 0.0f);
+	glVertex3f(-0.5f + x, 0.5f + y, 1.0f);
+
+glNormal3f(0.0f, -1.0f, 0.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 0.0f);
+	glVertex3f(0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 1.0f);
+	glVertex3f(-0.5f + x, -0.5f + y, 0.0f);
+
     glEnd();
     glEndList();
 

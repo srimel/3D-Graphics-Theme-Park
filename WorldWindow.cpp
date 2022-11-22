@@ -86,6 +86,10 @@ WorldWindow::draw(void)
 	// Initialize all the objects.
 	ground.Initialize();
 	traintrack.Initialize();
+	for (int i = 0, j=0; i < 5; i++, j += 3)
+	{
+		my_cube[i].Initialize(5 + j, -35, 1, 1);
+	}
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -113,6 +117,10 @@ WorldWindow::draw(void)
     // Draw stuff. Everything.
     ground.Draw();
     traintrack.Draw();
+	for (int i = 0; i < 5; i++)
+	{
+		my_cube[i].Draw();
+	}
 }
 
 
