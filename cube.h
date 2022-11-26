@@ -20,6 +20,7 @@ class cube
 
     // Initializer. Creates the display list.
     bool    InitializeConcession(float pos_x, float pos_y, float pos_z, float scale);
+    bool    Initialize(float pos_x, float pos_y, float pos_z, float scale_x, float scale_y, float scale_z, const char * fn);
 
     // Does the drawing.
     void    Draw(void);

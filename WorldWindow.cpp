@@ -92,6 +92,16 @@ WorldWindow::draw(void)
 		}
 		a_road.Initialize(0, -30, 0, 1);
 
+		float x = -30.0, y = 35.0;
+		float scalex = 5.0;
+		float scaley = 5.0;
+		float scalez = 0.25;
+		float j = 0.25;
+		for (int i = 0; i < 5; i++, j+=0.50, scalex--, scaley--)
+		{
+			pyramid[i].Initialize(x, y, j, scalex, scaley, scalez, "brick2.tga");
+		}
+
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -124,6 +134,10 @@ WorldWindow::draw(void)
 		concessions[i].Draw();
 	}
 	a_road.Draw();
+	for (int i = 0; i < 5; i++)
+	{
+		pyramid[i].Draw();
+	}
 }
 
 
