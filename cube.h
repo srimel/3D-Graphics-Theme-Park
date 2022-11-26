@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _CUBE_H_
 #define _CUBE_H_
 #include <Fl/gl.h>
@@ -20,7 +19,7 @@ class cube
     ~cube(void);
 
     // Initializer. Creates the display list.
-    bool    Initialize(float pos_x, float pos_y, float pos_z, float scale);
+    bool    InitializeConcession(float pos_x, float pos_y, float pos_z, float scale);
 
     // Does the drawing.
     void    Draw(void);

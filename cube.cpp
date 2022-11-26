@@ -12,7 +12,7 @@ cube::~cube(void)
 	}
 }
 
-bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale)
+bool cube::InitializeConcession(float pos_x, float pos_y, float pos_z, float scale)
 {
 	x = pos_x; y = pos_y; z = pos_z;
     ubyte   *image_data;
@@ -20,7 +20,7 @@ bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale)
 
     // Load the image for the texture. The texture file has to be in
     // a place where it will be found.
-    if ( ! ( image_data = (ubyte*)tga_load("concession.tga", &image_width,
+    if ( ! ( image_data = (ubyte*)tga_load("concession2.tga", &image_width,
 					   &image_height, TGA_TRUECOLOR_24) ) )
     {
 	fprintf(stderr, "cube::Initialize: Couldn't load concession.tga\n");
@@ -85,13 +85,14 @@ bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale)
 	float ct = 1.0;
 	float ds = 1.0;
 	float dt = 0.f;
+	float offset = 0.5;
 
 		// front)
 		//glColor3f(1, 0, 0);
 	glNormal3f(0.0, 0.0, 1.0);
-		glTexCoord2f(as, at);
+		glTexCoord2f(as+offset, at);
 		glVertex3f((-1*scale)+x, (1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(bs, bt);
+	    glTexCoord2f(bs+offset, bt);
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (1*scale)+z);
 	    glTexCoord2f(cs, ct);
 		glVertex3f((1*scale)+x, (-1*scale)+y, (1*scale)+z);
@@ -101,13 +102,13 @@ bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale)
 		// back
 		//glColor3f(0, 1, 0);
 	glNormal3f(0.0, 0.0, -1.0);
-		glTexCoord2f(as, at);
+	    glTexCoord2f(ds, dt); // 1,0
 		glVertex3f((-1*scale)+x, (1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(bs, bt);
+		glTexCoord2f(as+offset, at); // 0,0
 		glVertex3f((1*scale)+x, (1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(cs, ct);
+	    glTexCoord2f(bs+offset, bt); // 0,1
 		glVertex3f((1*scale)+x, (-1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(ds, dt);
+	    glTexCoord2f(cs, ct); // 1,1
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (-1*scale)+z);
 
 		// top
@@ -117,45 +118,45 @@ bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale)
 		glVertex3f((-1*scale)+x, (1*scale)+y, (-1*scale)+z);
 	    glTexCoord2f(bs, bt);
 		glVertex3f((-1*scale)+x, (1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(cs, ct);
+	    glTexCoord2f(cs-offset, ct);
 		glVertex3f((1*scale)+x, (1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(ds, dt);
+	    glTexCoord2f(ds-offset, dt);
 		glVertex3f((1*scale)+x, (1*scale)+y, (-1*scale)+z);
 
 		// bottom
 		//glColor3f(1, 1, 0);
 	glNormal3f(0.0, -1.0, 0.0);
-		glTexCoord2f(as, at);
+	    glTexCoord2f(ds, dt); // 1,0
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(bs, bt);
+		glTexCoord2f(as+offset, at); // 0,0
 		glVertex3f((1*scale)+x, (-1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(cs, ct);
+	    glTexCoord2f(bs+offset, bt); // 0,1
 		glVertex3f((1*scale)+x, (-1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(ds, dt);
+	    glTexCoord2f(cs, ct); // 1,1
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (1*scale)+z);
 
 		// left
 		//glColor3f(0, 1, 1);
 	glNormal3f(-1.0, 0.0, 0.0);
-		glTexCoord2f(as, at);
+	    glTexCoord2f(ds, dt); // 1,0
 		glVertex3f((-1*scale)+x, (1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(bs, bt);
+		glTexCoord2f(as+offset, at); // 0,0
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(cs, ct);
+	    glTexCoord2f(bs+offset, bt); // 0,1
 		glVertex3f((-1*scale)+x, (-1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(ds, dt);
+	    glTexCoord2f(cs, ct); // 1,1
 		glVertex3f((-1*scale)+x, (1*scale)+y, (1*scale)+z);
 
 		// right
 		//glColor3f(1, 0, 1);
 	glNormal3f(1.0, 0.0, 0.0);
-		glTexCoord2f(as, at);
+	    glTexCoord2f(ds, dt); // 1,0
 		glVertex3f((1*scale)+x, (1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(bs, bt);
+		glTexCoord2f(as+offset, at); // 0,0
 		glVertex3f((1*scale)+x, (-1*scale)+y, (1*scale)+z);
-	    glTexCoord2f(cs, ct);
+	    glTexCoord2f(bs+offset, bt); // 0,1
 		glVertex3f((1*scale)+x, (-1*scale)+y, (-1*scale)+z);
-	    glTexCoord2f(ds, dt);
+	    glTexCoord2f(cs, ct); // 1,1
 		glVertex3f((1*scale)+x, (1*scale)+y, (-1*scale)+z);
 	glEnd();
 
