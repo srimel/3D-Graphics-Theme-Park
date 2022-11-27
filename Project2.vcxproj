@@ -99,6 +99,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cone.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="CubicBspline.cpp" />
     <ClCompile Include="GenericException.cpp" />
@@ -106,10 +107,12 @@
     <ClCompile Include="libtarga.c" />
     <ClCompile Include="road.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="vec3f.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cone.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="CubicBspline.h" />
     <ClInclude Include="GenericException.h" />
@@ -117,6 +120,7 @@
     <ClInclude Include="libtarga.h" />
     <ClInclude Include="road.h" />
     <ClInclude Include="Track.h" />
+    <ClInclude Include="vec3f.h" />
     <ClInclude Include="WorldWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

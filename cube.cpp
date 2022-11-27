@@ -78,6 +78,7 @@ bool cube::InitializeConcession(float pos_x, float pos_y, float pos_z, float sca
 	float dt = 0.f;
 	float offset = 0.5;
 
+
 		// front)
 		//glColor3f(1, 0, 0);
 	glNormal3f(0.0, 0.0, 1.0);

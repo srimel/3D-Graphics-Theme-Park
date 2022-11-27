@@ -17,6 +17,7 @@
 #include "Track.h"
 #include "cube.h"
 #include "road.h"
+#include "cone.h"
 
 
 // Subclass the Fl_Gl_Window because we want to draw OpenGL in here.
@@ -42,6 +43,7 @@ class WorldWindow : public Fl_Gl_Window {
 	cube concessions[5];
 	cube pyramid[5];
 	road a_road;
+	cone a_cone;
 
 	static const double FOV_X; // The horizontal field of view.
 
