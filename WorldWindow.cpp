@@ -19,6 +19,7 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 	: Fl_Gl_Window(x, y, width, height, label)
 {
     button = -1;
+	button2 = -1;
 
     // Initial viewing parameters.
     phi = 45.0f;
@@ -233,23 +234,41 @@ WorldWindow::handle(int event)
     {
       case FL_PUSH:
         button = Fl::event_button();
-	x_last = x_down = Fl::event_x();
-	y_last = y_down = Fl::event_y();
-	phi_down = phi;
-	theta_down = theta;
-	dist_down = dist;
-	x_at_down = x_at;
-	y_at_down = y_at;
-	return 1;
+		x_last = x_down = Fl::event_x();
+		y_last = y_down = Fl::event_y();
+		phi_down = phi;
+		theta_down = theta;
+		dist_down = dist;
+		x_at_down = x_at;
+		y_at_down = y_at;
+		return 1;
       case FL_DRAG:
-	x_last = Fl::event_x();
-	y_last = Fl::event_y();
-	return 1;
+		x_last = Fl::event_x();
+		y_last = Fl::event_y();
+		return 1;
       case FL_RELEASE:
         button = -1;
-	return 1;
-    }
+		return 1;
+	  case FL_KEYBOARD:
+		  int key = Fl::event_key();
+		  switch (key)
+		  {
+		  case FL_Left:
+			  y_at -= 5;
+			  return 1;
 
+		  case FL_Right:
+			  y_at += 5;
+			  return 1;
+		  case FL_Up:
+			  x_at -= 5;
+			  return 1;
+		  case FL_Down:
+			  x_at += 5;
+			  return 1;
+		  }
+
+    }
     // Pass any other event types on the superclass.
     return Fl_Gl_Window::handle(event);
 }
