@@ -102,6 +102,7 @@
     <ClCompile Include="cone.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="CubicBspline.cpp" />
+    <ClCompile Include="face.cpp" />
     <ClCompile Include="GenericException.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="libtarga.c" />
@@ -115,6 +116,7 @@
     <ClInclude Include="cone.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="CubicBspline.h" />
+    <ClInclude Include="face.h" />
     <ClInclude Include="GenericException.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="libtarga.h" />

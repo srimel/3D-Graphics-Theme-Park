@@ -48,6 +48,9 @@
     <ClCompile Include="vec3f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="face.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubicBspline.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vec3f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="face.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

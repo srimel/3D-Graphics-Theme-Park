@@ -101,9 +101,10 @@ WorldWindow::draw(void)
 		{
 			pyramid[i].Initialize(x, y, j, scalex, scaley, scalez, "brick2.tga");
 		}
-		vec3f d(4, 8, 9);
-		vec3f a(12, 15, 15);
-		a_cone.Initialize(d, a, 25, 10, 30);
+		//vec3f d(4, 8, 9);
+		//vec3f a(12, 15, 15);
+		//a_cone.Initialize(d, a, 25, 10, 30);
+		a_face.Initialize();
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -140,7 +141,8 @@ WorldWindow::draw(void)
 	{
 		pyramid[i].Draw();
 	}
-	a_cone.Draw();
+	//a_cone.Draw();
+	a_face.Draw();
 }
 
 
