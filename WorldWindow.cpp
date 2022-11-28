@@ -104,7 +104,10 @@ WorldWindow::draw(void)
 		//vec3f d(4, 8, 9);
 		//vec3f a(12, 15, 15);
 		//a_cone.Initialize(d, a, 25, 10, 30);
-		a_face.Initialize();
+		// posx -> right 
+		// posy -> up
+		// posz -> forward
+		a_face.Initialize(15, 3.5, -43.5, 1, 1, 1);
     }
 
     // Stuff out here relies on a coordinate system or must be done on every

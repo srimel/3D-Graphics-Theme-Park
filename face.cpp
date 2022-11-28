@@ -101,7 +101,7 @@ bool face::loadOBJ(const char* path, std::vector<glm::vec3>& out_verts, std::vec
 }
 
 
-bool face::Initialize(void)
+bool face::Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez)
 {
 
 	std::vector<glm::vec3> vertices;
@@ -128,14 +128,24 @@ bool face::Initialize(void)
 		printf("Vert and normals are same size\n");
 	}
 
-	glRotatef(90, 180, 90, 90);
-	glTranslatef(5, 10, 5);
+	/*
+	float posx = -30;
+	float posy = 35;
+	float posz = 2;
+	float scalex = 1;
+	float scaley = 1;
+	float scalez = 1;
+	*/
+
+	glRotatef(90, 1, 0, 0);
+	glRotatef(60, 0, 1, 0);
+	//glTranslatef(35, 2, -35);
 	// Draw the ground as a quadrilateral, specifying texture coordinates.
 	glBegin(GL_TRIANGLES);
 		for (unsigned int i = 0; i < vertices.size(); i++)
 		{
 			glNormal3f(normals[i].x, normals[i].y, normals[i].z);
-			glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
+			glVertex3f((vertices[i].x*scalex)+posx, (vertices[i].y*scaley)+posy, (vertices[i].z*scalez)+posz);
 		}
 	glEnd();
     glEndList();
