@@ -108,6 +108,7 @@ WorldWindow::draw(void)
 		// posy -> up
 		// posz -> forward
 		a_face.Initialize(15, 3.5, -43.5, 1, 1, 1);
+		a_dino.Initialize(0, 3.3, 0, 1, 1, 1);
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -146,6 +147,7 @@ WorldWindow::draw(void)
 	}
 	//a_cone.Draw();
 	a_face.Draw();
+	a_dino.Draw();
 }
 
 

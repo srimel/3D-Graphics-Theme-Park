@@ -51,6 +51,9 @@
     <ClCompile Include="face.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dino.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubicBspline.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="face.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

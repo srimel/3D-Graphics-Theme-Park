@@ -1,16 +1,7 @@
-#include "face.h"
+#include "dino.h"
 #include <string>
 
-face::~face(void)
-{
-	if (initialized)
-	{
-		glDeleteLists(display_list, 1);
-		glDeleteTextures(1, &texture_obj);
-	}
-}
-
-bool face::loadOBJ(const char* path, std::vector<glm::vec3>& out_verts, std::vector<glm::vec2>& out_uvs, std::vector<glm::vec3>& out_norms)
+bool dino::loadOBJ(const char* path, std::vector<glm::vec3>& out_verts, std::vector<glm::vec2>& out_uvs, std::vector<glm::vec3>& out_norms)
 {
 	std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
 	std::vector<glm::vec3> temp_vertices;
@@ -97,17 +88,24 @@ bool face::loadOBJ(const char* path, std::vector<glm::vec3>& out_verts, std::vec
 		out_norms.push_back(normal);
 	}
 
-	return true;
+    return true;
 }
 
-
-bool face::Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez)
+dino::~dino(void)
 {
+	if (initialized)
+	{
+		glDeleteLists(display_list, 1);
+		glDeleteTextures(1, &texture_obj);
+	}
+}
 
+bool dino::Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez)
+{
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
-	if (!loadOBJ("face2.obj", vertices, uvs, normals))
+	if (!loadOBJ("dino3.obj", vertices, uvs, normals))
 	{
 		printf("Failed to load obj file!\n");
 		return false;
@@ -118,7 +116,7 @@ bool face::Initialize(float posx, float posy, float posz, float scalex, float sc
     display_list = glGenLists(1);
     glNewList(display_list, GL_COMPILE);
 	// Use white, because the texture supplies the color.
-	glColor3f(1.0, 0.0, 0.0);
+	glColor3f(0.0, 1.0, 0.0);
 
 	// The surface normal is up for the ground.
 	//glNormal3f(0.0, 0.0, 1.0);
@@ -155,7 +153,7 @@ bool face::Initialize(float posx, float posy, float posz, float scalex, float sc
 	return true;
 }
 
-void face::Draw(void)
+void dino::Draw(void)
 {
 	glPushMatrix();
 	glCallList(display_list);

@@ -102,6 +102,7 @@
     <ClCompile Include="cone.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="CubicBspline.cpp" />
+    <ClCompile Include="dino.cpp" />
     <ClCompile Include="face.cpp" />
     <ClCompile Include="GenericException.cpp" />
     <ClCompile Include="Ground.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="cone.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="CubicBspline.h" />
+    <ClInclude Include="dino.h" />
     <ClInclude Include="face.h" />
     <ClInclude Include="GenericException.h" />
     <ClInclude Include="Ground.h" />
