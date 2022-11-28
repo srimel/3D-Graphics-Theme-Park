@@ -116,7 +116,7 @@ bool dino::Initialize(float posx, float posy, float posz, float scalex, float sc
     display_list = glGenLists(1);
     glNewList(display_list, GL_COMPILE);
 	// Use white, because the texture supplies the color.
-	glColor3f(0.0, 1.0, 0.0);
+	glColor3f(0.0, 0.0, 1.0);
 
 	// The surface normal is up for the ground.
 	//glNormal3f(0.0, 0.0, 1.0);

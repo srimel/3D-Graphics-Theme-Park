@@ -145,7 +145,9 @@ WorldWindow::draw(void)
 	{
 		pyramid[i].Draw();
 	}
-	//a_cone.Draw();
+	glm::vec3 pos(5, 5, 10);
+	glm::vec3 col(1, 0, 1);
+	//a_cone.Draw(pos, col, 4, 0, 20);
 	a_face.Draw();
 	a_dino.Draw();
 }
@@ -206,7 +208,7 @@ WorldWindow::Update(float dt)
     // drawing.
 
     if ( button != -1 ) // Only do anything if the mouse button is down.
-	Drag(dt);
+		Drag(dt);
 
     // Animate the train.
     traintrack.Update(dt);
