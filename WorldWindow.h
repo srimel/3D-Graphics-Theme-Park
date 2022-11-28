@@ -20,6 +20,7 @@
 #include "cone.h"
 #include "face.h"
 #include "dino.h"
+#include "tree.h"
 
 // Subclass the Fl_Gl_Window because we want to draw OpenGL in here.
 class WorldWindow : public Fl_Gl_Window {
@@ -47,6 +48,7 @@ class WorldWindow : public Fl_Gl_Window {
 	cone a_cone;
 	face a_face;
 	dino a_dino;
+	tree trees[10];
 
 	static const double FOV_X; // The horizontal field of view.
 

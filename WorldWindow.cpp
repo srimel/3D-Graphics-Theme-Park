@@ -147,9 +147,15 @@ WorldWindow::draw(void)
 	}
 	glm::vec3 pos(5, 5, 10);
 	glm::vec3 col(1, 0, 1);
-	//a_cone.Draw(pos, col, 4, 0, 20);
 	a_face.Draw();
 	a_dino.Draw();
+	//a_tree.Draw(5,5,5, 1, 20);
+	//posx -> forwards
+	//posy ->  right
+	trees[0].Draw(-30, -25, 0, 1, 10);
+	trees[1].Draw(-35, -35, 0, 0.5, 15);
+	trees[2].Draw(-35, -10, 0, 2, 15);
+	trees[3].Draw(-15, -40, 0, 1.5, 10);
 }
 
 

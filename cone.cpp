@@ -10,5 +10,4 @@ void cone::Draw(glm::vec3 & pos, glm::vec3 & color, GLdouble br, GLdouble tr, GL
 		glTranslatef(pos.x, pos.y, pos.z);
 		gluCylinder(quadratic, br, tr, h, 32, 32);
 	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
 }
