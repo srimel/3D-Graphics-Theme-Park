@@ -16,8 +16,6 @@ class Track {
     GLubyte 	    track_list;	    // The display list for the track.
     GLubyte 	    train_list;	    // The display list for the train.
     bool    	    initialized;    // Whether or not we have been initialized.
-    CubicBspline    *track;	    // The spline that defines the track.
-    float	    posn_on_track;  // The train's parametric position on the
 				    // track.
     float	    speed;	    // The train's speed, in world coordinates
 
@@ -26,6 +24,8 @@ class Track {
     static const float 	TRAIN_ENERGY;
 
   public:
+    CubicBspline    *track;	    // The spline that defines the track.
+    float	    posn_on_track;  // The train's parametric position on the
     // Constructor
     Track(void) { initialized = false; posn_on_track = 0.0f; speed = 0.0f; };
 
@@ -33,7 +33,7 @@ class Track {
     ~Track(void);
 
     bool    Initialize(void);	// Gets everything set up for drawing.
-    void    Update(float);	// Updates the location of the train
+    float    Update(float);	// Updates the location of the train
     void    Draw(void);		// Draws everything.
 };
 

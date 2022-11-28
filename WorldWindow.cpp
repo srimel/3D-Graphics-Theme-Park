@@ -27,6 +27,12 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
     dist = 100.0f;
     x_at = 0.0f;
     y_at = 0.0f;
+	trainEyeX = 0.0f;
+	trainEyeY = 0.0f;
+	trainEyeZ = 0.0f;
+	trainDerX = 0.0f;
+	trainDerY = 0.0f;
+	trainDerZ = 0.0f;
 
 }
 
@@ -126,7 +132,12 @@ WorldWindow::draw(void)
     eye[2] = 2.0 + dist * sin(phi * M_PI / 180.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
+	if (button2 != -1)
+	{
+		gluLookAt(trainEyeX, trainEyeY, trainEyeZ, trainDerX, trainDerY, 0.2, 0.0, 0.0, 1.0);
+	} else {
+		gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
+	}
 
     // Position the light source. This has to happen after the viewing
     // transformation is set up, so that the light stays fixed in world
@@ -207,6 +218,18 @@ WorldWindow::Drag(float dt)
     }
 }
 
+void WorldWindow::norm(float v[3])
+{
+    double  l = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+
+    if ( l == 0.0 )
+	return;
+
+    v[0] /= (float)l;
+    v[1] /= (float)l;
+    v[2] /= (float)l;
+}
+
 
 bool
 WorldWindow::Update(float dt)
@@ -218,7 +241,23 @@ WorldWindow::Update(float dt)
 		Drag(dt);
 
     // Animate the train.
-    traintrack.Update(dt);
+	float current = traintrack.Update(dt);
+	if (button2 != -1)
+	{
+		float posn[3];
+		float tangent[3];
+		traintrack.track->Evaluate_Point(traintrack.posn_on_track, posn);
+		trainEyeX = posn[0];
+		trainEyeY = posn[1];
+		trainEyeZ = posn[1];
+
+		traintrack.track->Evaluate_Derivative(traintrack.posn_on_track, tangent);
+		//printf("normalized tangent = %f, %f, %f\n", tangent[0], tangent[1], tangent[2]);
+		trainDerX = tangent[0];
+		trainDerY = tangent[1];
+		trainDerZ = tangent[2];
+;
+	}
 
     return true;
 }
@@ -265,6 +304,12 @@ WorldWindow::handle(int event)
 			  return 1;
 		  case FL_Down:
 			  x_at += 5;
+			  return 1;
+		  case FL_Enter:
+			  button2 = Fl::event_button();
+			  return 1;
+		  case FL_BackSpace:
+			  button2 = -1;
 			  return 1;
 		  }
 

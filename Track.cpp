@@ -255,7 +255,7 @@ Track::Draw(void)
 }
 
 
-void
+float
 Track::Update(float dt)
 {
     float   point[3];
@@ -264,7 +264,7 @@ Track::Update(float dt)
     double  parametric_speed;
 
     if ( ! initialized )
-	return;
+	return 0.0;
 
     // First we move the train along the track with its current speed.
 
@@ -274,7 +274,7 @@ Track::Update(float dt)
     // Get its length.
     length = sqrt(deriv[0]*deriv[0] + deriv[1]*deriv[1] + deriv[2]*deriv[2]);
     if ( length == 0.0 )
-	return;
+	return 0.0;
 
     // The parametric speed is the world train speed divided by the length
     // of the tangent vector.
@@ -295,6 +295,8 @@ Track::Update(float dt)
 	speed = 0.0;
     else
 	speed = (float)sqrt(2.0 * ( TRAIN_ENERGY - 9.81 * point[2] ));
+
+	return posn_on_track;
 }
 
 

@@ -239,15 +239,15 @@ CubicBspline::Evaluate_Derivative(const float t, float *deriv)
 
     /* Now it's just like evaluating a point. */
     for ( j = 0 ; j < d ; j++ )
-	deriv[j] = 0.0f;
+		deriv[j] = 0.0f;
     for ( i = 0 ; i < 4 ; i++ )
     {
-	int index = ( posn + i ) % n;
-	for ( j = 0 ; j < d ; j++ )
-	    deriv[j] += c_pts[index][j] * basis[i];
-    }
+		int index = ( posn + i ) % n;
+		for ( j = 0 ; j < d ; j++ )
+			deriv[j] += c_pts[index][j] * basis[i];
+	}
     for ( j = 0 ; j < d ; j++ )
-	deriv[j] /= 6.0f;
+		deriv[j] /= 6.0f;
 }
 
 
