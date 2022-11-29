@@ -228,7 +228,7 @@ bool cube::Initialize(float pos_x, float pos_y, float pos_z, float scale_x, floa
 	float ct = 1.0;
 	float ds = 1.0;
 	float dt = 0.f;
-	float offset = 0.5;
+	float offset = 0.0;
 
 		// front)
 		//glColor3f(1, 0, 0);
