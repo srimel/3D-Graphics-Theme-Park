@@ -26,7 +26,7 @@ class face
     ~face(void);
 
     // Initializer. Creates the display list.
-    bool Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez);
+    bool Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez, float r, float g, float b);
 
     // Does the drawing.
     void    Draw(void);

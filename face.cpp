@@ -101,7 +101,7 @@ bool face::loadOBJ(const char* path, std::vector<glm::vec3>& out_verts, std::vec
 }
 
 
-bool face::Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez)
+bool face::Initialize(float posx, float posy, float posz, float scalex, float scaley, float scalez, float r, float g, float b)
 {
 
 	std::vector<glm::vec3> vertices;
@@ -118,24 +118,7 @@ bool face::Initialize(float posx, float posy, float posz, float scalex, float sc
     display_list = glGenLists(1);
     glNewList(display_list, GL_COMPILE);
 	// Use white, because the texture supplies the color.
-	glColor3f(1.0, 0.0, 0.0);
-
-	// The surface normal is up for the ground.
-	//glNormal3f(0.0, 0.0, 1.0);
-
-	if (vertices.size() == normals.size())
-	{
-		printf("Vert and normals are same size\n");
-	}
-
-	/*
-	float posx = -30;
-	float posy = 35;
-	float posz = 2;
-	float scalex = 1;
-	float scaley = 1;
-	float scalez = 1;
-	*/
+	glColor3f(r,g,b);
 
 	glRotatef(90, 1, 0, 0);
 	glRotatef(60, 0, 1, 0);

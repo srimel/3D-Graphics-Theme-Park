@@ -118,23 +118,6 @@ bool dino::Initialize(float posx, float posy, float posz, float scalex, float sc
 	// Use white, because the texture supplies the color.
 	glColor3f(0.0, 0.0, 1.0);
 
-	// The surface normal is up for the ground.
-	//glNormal3f(0.0, 0.0, 1.0);
-
-	if (vertices.size() == normals.size())
-	{
-		printf("Vert and normals are same size\n");
-	}
-
-	/*
-	float posx = -30;
-	float posy = 35;
-	float posz = 2;
-	float scalex = 1;
-	float scaley = 1;
-	float scalez = 1;
-	*/
-
 	glRotatef(90, 1, 0, 0);
 	glRotatef(60, 0, 1, 0);
 	//glTranslatef(35, 2, -35);

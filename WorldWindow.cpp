@@ -66,6 +66,12 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 	gazeView[3].y = 21.052149;
 	gazeView[3].z = 2.000000;
 
+	eyeView[4].x = 71.937927;
+	eyeView[4].y = 19.440718;
+	eyeView[4].z = 8.540310;
+	gazeView[4].x = -27.771034;
+	gazeView[4].y = 23.358294;
+	gazeView[4].z = 2.000000;
 }
 
 
@@ -146,8 +152,12 @@ WorldWindow::draw(void)
 		// posx -> right 
 		// posy -> up
 		// posz -> forward
-		a_face.Initialize(15, 3.5, -43.5, 1, 1, 1);
+		a_face.Initialize(15, 3.5, -43.5, 1, 1, 1, 1, 0, 0);
 		a_dino.Initialize(0, 3.3, 0, 1, 1, 1);
+
+		faces[0].Initialize(35, 5, 20, 2, 3, 2, (float) 255/255, (float) 160/255, (float) 122/255);
+		faces[1].Initialize(37, 6.2, 21.7, 0.5, 0.5, 0.5, (float) 255/255, (float) 255/255, (float) 255/255);
+		faces[2].Initialize(35.3, 6.2, 22.2, 0.5, 0.5, 0.5, (float) 255/255, (float) 255/255, (float) 255/255);
     }
 
     // Stuff out here relies on a coordinate system or must be done on every
@@ -175,6 +185,7 @@ WorldWindow::draw(void)
 	}
 	else {
 		gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
+		//printf("eye: %f, %f, %f\ngaze: %f, %f, %f\n", eye[0], eye[1], eye[2], x_at, y_at, 2.0);
 	}
 
     // Position the light source. This has to happen after the viewing
@@ -206,6 +217,9 @@ WorldWindow::draw(void)
 	trees[1].Draw(-35, -35, 0, 0.5, 15);
 	trees[2].Draw(-35, -10, 0, 2, 15);
 	trees[3].Draw(-15, -40, 0, 1.5, 10);
+	faces[0].Draw();
+	faces[1].Draw();
+	faces[2].Draw();
 }
 
 
@@ -383,7 +397,7 @@ WorldWindow::handle(int event)
 			  return 1;
 		  case FL_Tab:
 			  button3 = Fl::event_button();
-			  if (controlIndex < 4)
+			  if (controlIndex < 5)
 				  ++controlIndex;
 			  else
 				  controlIndex = 1;

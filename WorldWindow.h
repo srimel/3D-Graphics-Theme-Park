@@ -50,6 +50,7 @@ class WorldWindow : public Fl_Gl_Window {
 	face a_face;
 	dino a_dino;
 	tree trees[10];
+	face faces[3];
 
 	static const double FOV_X; // The horizontal field of view.
 
@@ -63,8 +64,8 @@ class WorldWindow : public Fl_Gl_Window {
 	int button2;
 	int button3;
 	int controlIndex;
-	glm::vec3 eyeView[4];
-	glm::vec3 gazeView[4];
+	glm::vec3 eyeView[5];
+	glm::vec3 gazeView[5];
 	float trainEyeX;
 	float trainEyeY;
 	float trainEyeZ;
