@@ -20,6 +20,8 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 {
     button = -1;
 	button2 = -1;
+	button3 = -1;
+	controlIndex = 0;
 
     // Initial viewing parameters.
     phi = 45.0f;
@@ -33,6 +35,36 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 	trainDerX = 0.0f;
 	trainDerY = 0.0f;
 	trainDerZ = 0.0f;
+
+
+	// hardcoded close-up views for the objects I created
+	eyeView[0].x = 13.630882;
+	eyeView[0].y = 3.859577;
+	eyeView[0].z = 4.879395;
+	gazeView[0].x = 16.770647;
+	gazeView[0].y = -96.049637;
+	gazeView[0].z = 2.000000;
+
+	eyeView[1].x = 30.211098;
+	eyeView[1].y = 3.406841;
+	eyeView[1].z = 15.950928;
+	gazeView[1].x = -69.895599;
+	gazeView[1].y = -48.594421;
+	gazeView[1].z = 2.000000;
+
+	eyeView[2].x = 4.874422;
+	eyeView[2].y = 38.411864;
+	eyeView[2].z = 3.832493;
+	gazeView[2].x = -94.218910;
+	gazeView[2].y = 25.101965;
+	gazeView[2].z = 2.000000;
+
+	eyeView[3].x = 48.198542;
+	eyeView[3].y = -25.009768;
+	eyeView[3].z = 5.925979;
+	gazeView[3].x = -40.474377;
+	gazeView[3].y = 21.052149;
+	gazeView[3].z = 2.000000;
 
 }
 
@@ -134,8 +166,14 @@ WorldWindow::draw(void)
     glLoadIdentity();
 	if (button2 != -1)
 	{
-		gluLookAt(trainEyeX, trainEyeY, trainEyeZ, trainDerX, trainDerY, 0.2, 0.0, 0.0, 1.0);
-	} else {
+		gluLookAt(trainEyeX, trainEyeY, trainEyeZ, trainDerX, trainDerY, trainDerZ, 0, 0, 1);
+	}
+	else if (button3 != -1)
+	{
+		gluLookAt(eyeView[controlIndex-1].x, eyeView[controlIndex-1].y, eyeView[controlIndex-1].z, 
+				  gazeView[controlIndex-1].x, gazeView[controlIndex-1].y, gazeView[controlIndex-1].z, 0, 0, 1);
+	}
+	else {
 		gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
 	}
 
@@ -180,40 +218,40 @@ WorldWindow::Drag(float dt)
     switch ( button )
     {
       case FL_LEFT_MOUSE:
-	// Left button changes the direction the viewer is looking from.
-	theta = theta_down + 360.0f * dx / (float)w();
-	while ( theta >= 360.0f )
-	    theta -= 360.0f;
-	while ( theta < 0.0f )
-	    theta += 360.0f;
-	phi = phi_down + 90.0f * dy / (float)h();
-	if ( phi > 89.0f )
-	    phi = 89.0f;
-	if ( phi < -5.0f )
-	    phi = -5.0f;
-	break;
+		// Left button changes the direction the viewer is looking from.
+		theta = theta_down + 360.0f * dx / (float)w();
+		while ( theta >= 360.0f )
+			theta -= 360.0f;
+		while ( theta < 0.0f )
+			theta += 360.0f;
+		phi = phi_down + 90.0f * dy / (float)h();
+		if ( phi > 89.0f )
+			phi = 89.0f;
+		if ( phi < -5.0f )
+			phi = -5.0f;
+		break;
       case FL_MIDDLE_MOUSE:
-	// Middle button moves the viewer in or out.
-	dist = dist_down - ( 0.5f * dist_down * dy / (float)h() );
-	if ( dist < 1.0f )
-	    dist = 1.0f;
-	break;
+		// Middle button moves the viewer in or out.
+		dist = dist_down - ( 0.5f * dist_down * dy / (float)h() );
+		if ( dist < 1.0f )
+			dist = 1.0f;
+		break;
       case FL_RIGHT_MOUSE: {
-	// Right mouse button moves the look-at point around, so the world
-	// appears to move under the viewer.
-	float	x_axis[2];
-	float	y_axis[2];
+		// Right mouse button moves the look-at point around, so the world
+		// appears to move under the viewer.
+		float	x_axis[2];
+		float	y_axis[2];
 
-	x_axis[0] = -(float)sin(theta * M_PI / 180.0);
-	x_axis[1] = (float)cos(theta * M_PI / 180.0);
-	y_axis[0] = x_axis[1];
-	y_axis[1] = -x_axis[0];
+		x_axis[0] = -(float)sin(theta * M_PI / 180.0);
+		x_axis[1] = (float)cos(theta * M_PI / 180.0);
+		y_axis[0] = x_axis[1];
+		y_axis[1] = -x_axis[0];
 
-	x_at = x_at_down + 100.0f * ( x_axis[0] * dx / (float)w()
-				    + y_axis[0] * dy / (float)h() );
-	y_at = y_at_down + 100.0f * ( x_axis[1] * dx / (float)w()
-				    + y_axis[1] * dy / (float)h() );
-	} break;
+		x_at = x_at_down + 100.0f * ( x_axis[0] * dx / (float)w()
+						+ y_axis[0] * dy / (float)h() );
+		y_at = y_at_down + 100.0f * ( x_axis[1] * dx / (float)w()
+						+ y_axis[1] * dy / (float)h() );
+		} break;
       default:;
     }
 }
@@ -237,11 +275,14 @@ WorldWindow::Update(float dt)
     // Update the view. This gets called once per frame before doing the
     // drawing.
 
+    // Animate the train.
+	float current = traintrack.Update(dt);
+
+	//button controls
     if ( button != -1 ) // Only do anything if the mouse button is down.
 		Drag(dt);
 
-    // Animate the train.
-	float current = traintrack.Update(dt);
+
 	if (button2 != -1)
 	{
 		float posn[3];
@@ -251,12 +292,40 @@ WorldWindow::Update(float dt)
 		trainEyeY = posn[1];
 		trainEyeZ = posn[1];
 
+		float posn_at[3];
+		float dist = traintrack.posn_on_track + 0.1;
+		traintrack.track->Evaluate_Point(dist, posn_at);
+		trainDerX = posn_at[0];
+		trainDerY = posn_at[1];
+		trainDerZ = posn_at[2] + 0.5;
+
+
+		/*
 		traintrack.track->Evaluate_Derivative(traintrack.posn_on_track, tangent);
-		//printf("normalized tangent = %f, %f, %f\n", tangent[0], tangent[1], tangent[2]);
-		trainDerX = tangent[0];
-		trainDerY = tangent[1];
-		trainDerZ = tangent[2];
-;
+		norm(tangent);
+		float d = 1;
+		trainDerX = (tangent[0]*d);
+		trainDerY = (tangent[1]*d);
+		trainDerZ = (tangent[2]*d);
+
+		float posn_at[3];
+		float dist = traintrack.posn_on_track + 0.1;
+		traintrack.track->Evaluate_Point(dist, posn_at);
+		trainDerX = posn_at[0];
+		trainDerY = posn_at[1];
+		trainDerZ = posn_at[2];
+
+		track->Evaluate_Derivative(posn_on_track, tangent);
+		Normalize_3(tangent);
+
+		// Rotate it to poitn along the track, but stay horizontal
+		angle = atan2(tangent[1], tangent[0]) * 180.0 / M_PI;
+		glRotatef((float)angle, 0.0f, 0.0f, 1.0f);
+
+		// Another rotation to get the tilt right.
+		angle = asin(-tangent[2]) * 180.0 / M_PI;
+		glRotatef((float)angle, 0.0f, 1.0f, 0.0f);
+		*/
 	}
 
     return true;
@@ -310,6 +379,14 @@ WorldWindow::handle(int event)
 			  return 1;
 		  case FL_BackSpace:
 			  button2 = -1;
+			  button3 = -1;
+			  return 1;
+		  case FL_Tab:
+			  button3 = Fl::event_button();
+			  if (controlIndex < 4)
+				  ++controlIndex;
+			  else
+				  controlIndex = 1;
 			  return 1;
 		  }
 

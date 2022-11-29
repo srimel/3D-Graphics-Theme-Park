@@ -21,6 +21,7 @@
 #include "face.h"
 #include "dino.h"
 #include "tree.h"
+#include <glm/glm.hpp>
 
 // Subclass the Fl_Gl_Window because we want to draw OpenGL in here.
 class WorldWindow : public Fl_Gl_Window {
@@ -60,6 +61,10 @@ class WorldWindow : public Fl_Gl_Window {
 
 	int     button;	// The mouse button that is down, -1 if none.
 	int button2;
+	int button3;
+	int controlIndex;
+	glm::vec3 eyeView[4];
+	glm::vec3 gazeView[4];
 	float trainEyeX;
 	float trainEyeY;
 	float trainEyeZ;
