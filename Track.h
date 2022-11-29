@@ -15,6 +15,7 @@ class Track {
   private:
     GLubyte 	    track_list;	    // The display list for the track.
     GLubyte 	    train_list;	    // The display list for the train.
+    GLuint  texture_obj;    // The object for the grass texture.
     bool    	    initialized;    // Whether or not we have been initialized.
 				    // track.
     float	    speed;	    // The train's speed, in world coordinates
